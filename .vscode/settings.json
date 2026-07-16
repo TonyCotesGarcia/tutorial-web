@@ -14,7 +14,7 @@
   "editor.codeActionsOnSave": {
     "source.organizeImports": "explicit"
   },
-  "editor.defaultFormatter": "biomejs.biome",
+  "editor.defaultFormatter": "vscode.typescript-language-features",
   "editor.formatOnSave": true,
   "files.associations": {
     "*.svg": "html"
@@ -27,16 +27,16 @@
     "editor.defaultFormatter": "vscode.typescript-language-features"
   },
   "[json]": {
-    "editor.defaultFormatter": "biomejs.biome"
+    "editor.defaultFormatter": "vscode.typescript-language-features"
   },
   "[typescript]": {
-    "editor.defaultFormatter": "biomejs.biome"
+    "editor.defaultFormatter": "vscode.typescript-language-features"
   },
   "[javascriptreact]": {
-    "editor.defaultFormatter": "biomejs.biome"
+    "editor.defaultFormatter": "vscode.typescript-language-features"
   },
   "[typescriptreact]": {
-    "editor.defaultFormatter": "biomejs.biome"
+    "editor.defaultFormatter": "vscode.typescript-language-features"
   },
   "tailwindCSS.classAttributes": ["class", "className", "ngClass", "class:list"],
   "files.exclude": {
@@ -51,5 +51,15 @@
   "workbench.editorAssociations": {
     "*.svg": "default"
   },
-  "js/ts.preferences.autoImportSpecifierExcludeRegexes": ["@radix-ui", "next/router", "next/dist"]
+	"js/ts.preferences.autoImportSpecifierExcludeRegexes": [
+		"@radix-ui",
+		"next/router",
+		"next/dist"
+	],
+	"[css]": {
+		"editor.defaultFormatter": "vscode.css-language-features"
+	},
+	"[html]": {
+		"editor.defaultFormatter": "vscode.html-language-features"
+	}
 }
