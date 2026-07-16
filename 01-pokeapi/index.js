@@ -1,10 +1,10 @@
-async function onInit() {
+async function onInit () {
     const $ = (id) => document.getElementById(id)
 
     const URL = "https://pokeapi.co/api/v2/pokemon"
-    const searchInput = document.getElementById("searchInput");
+    const searchInput = document.getElementById("searchInput")
 
-    async function getData(url = URL) {
+    async function getData (url = URL) {
         const response = await fetch(url)
 
         if (!response.ok) {
@@ -26,7 +26,7 @@ async function onInit() {
     let nextUrl = null
     let prevUrl = null
 
-    function PokemonCardComponent(pokemon) {
+    function PokemonCardComponent (pokemon) {
         const element = document.createElement("article")
 
         const types = pokemon.types
@@ -83,7 +83,7 @@ async function onInit() {
         return element
     }
 
-    async function renderPokemons(results) {
+    async function renderPokemons (results) {
         container.innerHTML = `
             <p class="col-span-full text-center text-slate-500">
                 Cargando pokémons...
@@ -112,12 +112,12 @@ async function onInit() {
         }
     }
 
-    function updateButtons() {
+    function updateButtons () {
         if (prevBtn) prevBtn.disabled = !prevUrl
         if (nextBtn) nextBtn.disabled = !nextUrl
     }
 
-    async function loadPage(url) {
+    async function loadPage (url) {
         const response = await getData(url)
 
         nextUrl = response.next
@@ -127,41 +127,41 @@ async function onInit() {
         updateButtons()
     }
 
-    let retardEscriure;
+    let retardEscriure
     if (searchInput) {
         searchInput.addEventListener("input", (e) => {
-            const query = e.target.value.trim().toLowerCase();
+            const query = e.target.value.trim().toLowerCase()
 
-            clearTimeout(retardEscriure);
+            clearTimeout(retardEscriure)
 
             retardEscriure = setTimeout(async () => {
                 if (query === "") {
-                    if (prevBtn) prevBtn.style.display = "inline-block";
-                    if (nextBtn) nextBtn.style.display = "inline-block";
-                    await loadPage(URL);
-                    return;
+                    if (prevBtn) prevBtn.style.display = "inline-block"
+                    if (nextBtn) nextBtn.style.display = "inline-block"
+                    await loadPage(URL)
+                    return
                 }
 
-                if (prevBtn) prevBtn.style.display = "none";
-                if (nextBtn) nextBtn.style.display = "none";
+                if (prevBtn) prevBtn.style.display = "none"
+                if (nextBtn) nextBtn.style.display = "none"
 
-                container.innerHTML = `<p class="col-span-full text-center text-slate-500">Buscando Pokémon...</p>`;
+                container.innerHTML = `<p class="col-span-full text-center text-slate-500">Buscando Pokémon...</p>`
 
                 try {
-                    const pokemon = await getData(`${URL}/${query}`);
-                    container.innerHTML = "";
-                    const pokemonCard = PokemonCardComponent(pokemon);
-                    container.appendChild(pokemonCard);
+                    const pokemon = await getData(`${URL}/${query}`)
+                    container.innerHTML = ""
+                    const pokemonCard = PokemonCardComponent(pokemon)
+                    container.appendChild(pokemonCard)
                 } catch (error) {
-                    
+
                     container.innerHTML = `
                         <p class="col-span-full rounded-lg border border-amber-400 bg-amber-100 p-4 text-center text-amber-700">
                             No se encontró ningún Pokémon con el nombre o ID: "${query}"
                         </p>
-                    `;
+                    `
                 }
-            }, 500);
-        });
+            }, 500)
+        })
     }
 
     if (prevBtn) {
